@@ -12,7 +12,7 @@ public class Customers
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long custcode;
+    private Long custcode;
 
     @Column(nullable = false)
     private String custname;
@@ -21,17 +21,17 @@ public class Customers
     private String workingarea;
     private String custcountry;
     private String grade;
-    private double openingamt;
-    private double receiveamt;
-    private double paymentamt;
-    private double outstandingamt;
+    private Double openingamt;
+    private Double receiveamt;
+    private Double paymentamt;
+    private Double outstandingamt;
     private String phone;
 
     @ManyToOne
     @JoinColumn(name = "agentcode",
                 nullable = false)
     @JsonIgnoreProperties("custcode")
-    private long agentcode;
+    private Long agentcode;
 
     @OneToMany(mappedBy = "custcode", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("custcode")
@@ -41,7 +41,7 @@ public class Customers
     {
     }
 
-    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, long agentcode)
+    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, Double openingamt, Double receiveamt, Double paymentamt, Double outstandingamt, String phone, long agentcode)
     {
         this.custname = custname;
         this.custcity = custcity;
@@ -54,6 +54,16 @@ public class Customers
         this.outstandingamt = outstandingamt;
         this.phone = phone;
         this.agentcode = agentcode;
+    }
+
+    public List<Orders> getOrders()
+    {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders)
+    {
+        this.orders = orders;
     }
 
     public long getCustcode()
@@ -111,42 +121,42 @@ public class Customers
         this.grade = grade;
     }
 
-    public double getOpeningamt()
+    public Double getOpeningamt()
     {
         return openingamt;
     }
 
-    public void setOpeningamt(double openingamt)
+    public void setOpeningamt(Double openingamt)
     {
         this.openingamt = openingamt;
     }
 
-    public double getReceiveamt()
+    public Double getReceiveamt()
     {
         return receiveamt;
     }
 
-    public void setReceiveamt(double receiveamt)
+    public void setReceiveamt(Double receiveamt)
     {
         this.receiveamt = receiveamt;
     }
 
-    public double getPaymentamt()
+    public Double getPaymentamt()
     {
         return paymentamt;
     }
 
-    public void setPaymentamt(double paymentamt)
+    public void setPaymentamt(Double paymentamt)
     {
         this.paymentamt = paymentamt;
     }
 
-    public double getOutstandingamt()
+    public Double getOutstandingamt()
     {
         return outstandingamt;
     }
 
-    public void setOutstandingamt(double outstandingamt)
+    public void setOutstandingamt(Double outstandingamt)
     {
         this.outstandingamt = outstandingamt;
     }
@@ -161,12 +171,12 @@ public class Customers
         this.phone = phone;
     }
 
-    public long getAgentcode()
+    public Long getAgentcode()
     {
         return agentcode;
     }
 
-    public void setAgentcode(long agentcode)
+    public void setAgentcode(Long agentcode)
     {
         this.agentcode = agentcode;
     }

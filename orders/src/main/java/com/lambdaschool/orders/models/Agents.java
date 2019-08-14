@@ -12,7 +12,7 @@ public class Agents
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long agentcode;
+    private Long agentcode;
 
     private String agentname;
     private String workingarea;

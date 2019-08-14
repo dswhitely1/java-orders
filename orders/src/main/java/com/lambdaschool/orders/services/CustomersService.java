@@ -11,5 +11,5 @@ public interface CustomersService
     Customers findByName(String name);
     Customers save(Customers customer);
     Customers update(Customers customer, long id);
-    Customers delete(long id);
+    void delete(long id);
 }
