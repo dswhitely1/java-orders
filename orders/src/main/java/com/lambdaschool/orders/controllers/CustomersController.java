@@ -43,11 +43,12 @@ public class CustomersController
                                                     Customers newCustomer)
     {
         customersService.save(newCustomer);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Customers c = customersService.findByName(newCustomer.getCustname());
+        return new ResponseEntity<>(c,HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/data/customer/update/{custcode}",
-                consumes = {"application/json"})
+                consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> updateCustomer(
             @RequestBody
                     Customers updatedCustomer,
@@ -55,7 +56,8 @@ public class CustomersController
                     Long custcode)
     {
         customersService.update(updatedCustomer, custcode);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Customers c = customersService.findById(custcode);
+        return new ResponseEntity<>(c,HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/data/customer/delete/{custcode}")
@@ -64,7 +66,7 @@ public class CustomersController
                     Long custcode)
     {
         customersService.delete(custcode);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("The Customer has been deleted!",HttpStatus.OK);
     }
 
 }
