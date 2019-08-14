@@ -1,11 +1,11 @@
 package com.lambdaschool.orders;
 
-import com.lambdaschool.orders.model.Agents;
-import com.lambdaschool.orders.model.Customers;
-import com.lambdaschool.orders.model.Orders;
-import com.lambdaschool.orders.repos.AgentsRepository;
-import com.lambdaschool.orders.repos.CustomersRepository;
-import com.lambdaschool.orders.repos.OrdersRepository;
+import com.lambdaschool.orders.models.Agents;
+import com.lambdaschool.orders.models.Customers;
+import com.lambdaschool.orders.models.Orders;
+import com.lambdaschool.orders.dao.AgentsDao;
+import com.lambdaschool.orders.dao.CustomersDao;
+import com.lambdaschool.orders.dao.OrdersDao;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class SeedData implements CommandLineRunner
 {
-    private CustomersRepository custrepos;
-    private AgentsRepository agentrepos;
-    private OrdersRepository ordersrepos;
+    private CustomersDao custrepos;
+    private AgentsDao agentrepos;
+    private OrdersDao ordersrepos;
 
-    public SeedData(CustomersRepository custrepos, AgentsRepository agentrepos, OrdersRepository ordersrepos)
+    public SeedData(CustomersDao custrepos, AgentsDao agentrepos, OrdersDao ordersrepos)
     {
         this.custrepos = custrepos;
         this.agentrepos = agentrepos;
@@ -26,7 +26,7 @@ public class SeedData implements CommandLineRunner
     }
 
     @Override
-    public void run(String... args) throws Exception
+    public void run(String[] args) throws Exception
     {
         Agents a01 = new Agents("Ramasundar", "Bangalore", 0.15, "077-25814763", "");
         Agents a02 = new Agents("Alex ", "London", 0.13, "075-12458969", "");

@@ -12,7 +12,7 @@ public class Customers
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long custcode;
+    private long custcode;
 
     @Column(nullable = false)
     private String custname;
@@ -31,7 +31,7 @@ public class Customers
     @JoinColumn(name = "agentcode",
                 nullable = false)
     @JsonIgnoreProperties("custcode")
-    private Long agentcode;
+    private Agents agentcode;
 
     @OneToMany(mappedBy = "custcode", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("custcode")
@@ -41,7 +41,7 @@ public class Customers
     {
     }
 
-    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, Double openingamt, Double receiveamt, Double paymentamt, Double outstandingamt, String phone, long agentcode)
+    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, Double openingamt, Double receiveamt, Double paymentamt, Double outstandingamt, String phone, Agents agentcode)
     {
         this.custname = custname;
         this.custcity = custcity;
@@ -166,18 +166,20 @@ public class Customers
         return phone;
     }
 
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
-
-    public Long getAgentcode()
+    public Agents getAgentcode()
     {
         return agentcode;
     }
 
-    public void setAgentcode(Long agentcode)
+    public void setAgentcode(Agents agentcode)
     {
         this.agentcode = agentcode;
     }
+
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+
+    }
+
 }

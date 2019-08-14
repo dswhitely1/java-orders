@@ -12,7 +12,7 @@ public class Agents
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long agentcode;
+    private long agentcode;
 
     private String agentname;
     private String workingarea;
@@ -39,7 +39,7 @@ public class Agents
         this.country = country;
     }
 
-    public long getAgentcode()
+    public Long getAgentcode()
     {
         return agentcode;
     }

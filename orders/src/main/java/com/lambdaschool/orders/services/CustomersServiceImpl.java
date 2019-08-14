@@ -1,6 +1,8 @@
 package com.lambdaschool.orders.services;
 
+import com.lambdaschool.orders.dao.AgentsDao;
 import com.lambdaschool.orders.dao.CustomersDao;
+import com.lambdaschool.orders.models.Agents;
 import com.lambdaschool.orders.models.Customers;
 import com.lambdaschool.orders.models.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ public class CustomersServiceImpl implements CustomersService
 {
     @Autowired
     private CustomersDao customerDao;
+    private AgentsDao agentsDao;
 
     @Override
     public List<Customers> findAll()
@@ -61,11 +64,12 @@ public class CustomersServiceImpl implements CustomersService
         newCustomer.setPhone(customer.getPhone());
         newCustomer.setAgentcode(customer.getAgentcode());
 
+
         for (Orders o : customer.getOrders())
         {
-            newCustomer.getOrders().add(new Orders(o.getOrdamount(), o.getAdvanceamount(), customer.getCustcode(), o.getOrddescription()));
+            newCustomer.getOrders().add(new Orders(o.getOrdamount(), o.getAdvanceamount(), newCustomer, o.getOrddescription()));
         }
-        return null;
+        return customerDao.save(newCustomer);
     }
 
     @Transactional
@@ -114,7 +118,7 @@ public class CustomersServiceImpl implements CustomersService
         {
             for (Orders o : customer.getOrders())
             {
-                currentCustomer.getOrders().add(new Orders(o.getOrdamount(), o.getAdvanceamount(), customer.getCustcode(), o.getOrddescription()));
+                currentCustomer.getOrders().add(new Orders(o.getOrdamount(), o.getAdvanceamount(), customer, o.getOrddescription()));
             }
         }
 

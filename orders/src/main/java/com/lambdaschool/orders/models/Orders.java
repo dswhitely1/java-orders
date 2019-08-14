@@ -10,7 +10,7 @@ public class Orders
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ordnum;
+    private long ordnum;
 
     private Double ordamount;
     private Double advanceamount;
@@ -18,7 +18,7 @@ public class Orders
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
     @JsonIgnoreProperties("orders")
-    private Long custcode;
+    private Customers custcode;
 
     private String orddescription;
 
@@ -26,7 +26,7 @@ public class Orders
     {
     }
 
-    public Orders(Double ordamount, Double advanceamount, Long custcode, String orddescription)
+    public Orders(Double ordamount, Double advanceamount, Customers custcode, String orddescription)
     {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
@@ -59,12 +59,12 @@ public class Orders
         this.advanceamount = advanceamount;
     }
 
-    public Long getCustcode()
+    public Customers getCustcode()
     {
         return custcode;
     }
 
-    public void setCustcode(Long custcode)
+    public void setCustcode(Customers custcode)
     {
         this.custcode = custcode;
     }
